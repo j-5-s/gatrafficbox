@@ -141,10 +141,11 @@ module.exports.toggleStatus = function() {
         //so give it 100% increase because the idea
         //is you want maximum of 180 degrees to indicate 
         //greater than last time. So 50% would be same as last time
-        averageVisitors = Math.ceil(averageVisitors*2);
+        var _averageVisitors = Math.ceil(averageVisitors*2);
         
-        
-        var degrees = parseInt(utils.convertToRange(activeVisitors,[0,averageVisitors],[180,0]),10);
+        console.log(activeVisitors, 'active')
+        console.log(averageVisitors, 'average')
+        var degrees = parseInt(utils.convertToRange(activeVisitors,[0,_averageVisitors],[180,0]),10);
         
         if (isNaN(degrees)) {
           degrees = 0;
