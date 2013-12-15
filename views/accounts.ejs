@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Accounts</title>
+    
+    <link rel='stylesheet' href='/vendor/bootstrap/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/vendor/bootstrap/css/bootstrap-theme.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-1.10.2.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <script>
+    var accounts = <%- JSON.stringify(accounts) %>;
+    var localAccount = <%- JSON.stringify(localAccount) %>;
+    </script>
+  </head>
+  <body>
+
+    
+    <div class="container">
+      <%- include partials/header.ejs %>
+      <form method="post" action="accounts" class="form">
+      <div class="form-group">
+        <label for="account">Account</label>
+        <select class="form-control" name="account" id="accounts">
+          <% if (localAccount.account.id) { %>
+          <option selected="true" value="<%= localAccount.account.id %>|<%= localAccount.account.name %>"><%= localAccount.account.name %></option>
+          <% } else { %>
+          <option value="">Account ID</option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="profile_id">Profile</label>
+        <select class="form-control" name="profile_id" id="profile">
+          <% if (localAccount.profile.id) { %>
+            <option selected="true" value="<%= localAccount.profile.id %>|<%= localAccount.profile.name %>"><%= localAccount.profile.name %></option>
+          <% } else { %>
+            <option value="">Profile ID</option>
+          <% } %>
+
+        </select>
+      </div>
+      <input type="submit" name="update_account" class="btn btn-primary" value="Update Accounts" />
+    </form>
+
+  </div>
+  </body>
+</html>

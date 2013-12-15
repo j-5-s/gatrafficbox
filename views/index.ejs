@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    
+    <link rel='stylesheet' href='/vendor/bootstrap/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/vendor/bootstrap/css/bootstrap-theme.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-1.10.2.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <script>
+    var accounts = <%- JSON.stringify(accounts) %>;
+    var localAccount = <%- JSON.stringify(localAccount) %>;
+    </script>
+  </head>
+  <body>
+
+    
+    <div class="container">
+      <%- include partials/header.ejs %>
+      <div class="row">
+
+        <div class="col-xs-8">
+        <p>This is the GA Trafficbox interface. This device is currently configured to read realtime data
+          from <span class="text-primary"><%= localAccount.profile.name %></span>. You may change the account
+          on the <a href="/accounts">Accounts</a> page.</p>
+          <p>The speedometers minimum range is always zero and its maximum range is based on the history
+            for the account you have configured - the Previous Period. This app stores realtime history 
+            locally and uses it to create the maximum for the speedometer. If this is the first time running
+            this app, it means there is probably no history and the previous period is set to 1.</p>
+
+          <h3>Current Status for <%= localAccount.profile.name %></h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Current Visitors (0 Degrees)</th>
+                <th>Previous Period (90 Degrees)</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td><%= activeVisitors %> </td>
+                  <td><%= averageHistory %></td>
+                </tr>
+            </tbody>
+          </table>
+          
+          
+        </div>
+        <div class="col-xs-4">
+          <a href="#" class="btn btn-primary toggle_status">Turn Box <%= (!status) ? 'On' : 'Off' %></a>
+        </div>
+      </div><!--/row-->
+    </div><!--/container-->
+  </body>
+</html>
