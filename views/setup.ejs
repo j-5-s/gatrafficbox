@@ -20,7 +20,7 @@
       <form class="form" method="post" action="/setup">
         <fiedset><legend>Google API</legend>
         <% if (status === 'updated') { %>
-          <p class="alert alert-success">Account informatino saved!</p>
+          <p class="alert alert-success">Account information saved!</p>
         <% } %>
         <%- (typeof error !== 'undefined' && error.length) ? '<p class="alert alert-danger">'+error+'</p>' : '' %>
         <p>In order to access Google Analytics Real Time API, you need to provide API information for your Google Analytics Account.

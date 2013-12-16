@@ -22,7 +22,7 @@ var request      = require('request'),
 
 // Client ID and client secret are available at
 // https://code.google.com/apis/console
-var CLIENT_ID =  priv.client_id //'430221348997-mp00vok0iee770hk2tvrt8jr3vphlpgn.apps.googleusercontent.com';
+var CLIENT_ID =  priv.client_id;
 var CLIENT_SECRET = priv.client_secret;
 var REDIRECT_URL = 'http://localhost:3000/authorize_redirect';
 

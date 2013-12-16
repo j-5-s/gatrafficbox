@@ -12,7 +12,7 @@ var gaMiddleware = exports.gaMiddleware = function(req, res, next) {
   //setup check. If the user does not have all ga data,
   //reroute them to setup
 
-  if (/authorize|setup|javscripts|stylesheets|vendor/.test(req.params[0])){
+  if (/authorize|setup|javscripts|stylesheets|vendor|images/.test(req.params[0])){
     return next();
   }
 

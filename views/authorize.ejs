@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Authorize</title>
+    <title>Accounts</title>
+    
+    <link rel='stylesheet' href='/vendor/bootstrap/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/vendor/bootstrap/css/bootstrap-theme.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-1.10.2.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/javascripts/app.js"></script>
   </head>
   <body>
-    <a href="<%= url %>">Authorize Me</a>
+    
+    <div class="container">
+      <%- include partials/header.ejs %>
+      <h1>Authorization</h1>
+      <p>This site needs access to your Google Analytics information. You may revoke access at any time buy clicking "Revoke Access"
+        in the top right hand corner of every page.</p>
+      <a href="<%= url %>" class="btn btn-primary">Authorize Me</a>
   </body>
 </html>
