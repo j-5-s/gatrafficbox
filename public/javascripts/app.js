@@ -11,24 +11,26 @@ $(function(){
     })
   });
 
-  var options = '';
-  for (var i = 0; i < accounts.items.length; i++) {
-    var account = accounts.items[i];
-    options += '<option value="'+account.id+'|'+account.name+'">'+account.name+'</option>';
-  }
-  $('#accounts').append(options);
+  if (typeof accounts !== 'undefined') {
+    var options = '';
+    for (var i = 0; i < accounts.items.length; i++) {
+      var account = accounts.items[i];
+      options += '<option value="'+account.id+'|'+account.name+'">'+account.name+'</option>';
+    }
+    $('#accounts').append(options);
 
-  $('#accounts').on('change', function(){
-    var id = $(this).val().split('|');
-    $.ajax({
-      url: '/list_properties/'+id[0],
-    }).done(function(data){
-      var profileOptions = '';
-      for (var i = 0; i  < data.items.length; i++ ){
-        var profile = data.items[i];
-        profileOptions += '<option value="'+profile.internalWebPropertyId+'|'+profile.name+'">'+profile.name+'</option>';
-      }
-      $('#profile').html(profileOptions);
-    })
-  })
-})
+    $('#accounts').on('change', function(){
+      var id = $(this).val().split('|');
+      $.ajax({
+        url: '/list_properties/'+id[0],
+      }).done(function(data){
+        var profileOptions = '';
+        for (var i = 0; i  < data.items.length; i++ ){
+          var profile = data.items[i];
+          profileOptions += '<option value="'+profile.internalWebPropertyId+'|'+profile.name+'">'+profile.name+'</option>';
+        }
+        $('#profile').html(profileOptions);
+      });
+    });
+  }
+});

@@ -1,8 +1,10 @@
 <div class="header">
     <ul class="nav nav-pills pull-right">
     
-    <li><a href="/revoke" class="text-danger">Revoke Access</a></li>
-    <li><a href="/accounts" class="<%= (page === 'accounts') ? 'active' : '' %>">Accounts</a></li>
+
+    <li class="<%= (page === 'setup') ? 'active' : '' %>"><a href="/setup">Setup</a></li>
+    <li class="<%= (page === 'accounts') ? 'active' : '' %>"><a href="/accounts" >GA Accounts</a></li>
+    <li><a href="/revoke" class="text-danger">Revoke GA Access</a></li>
   </ul>
   <h3 class="text-muted"><a href="/">GA Trafficbox</a></h3>
 </div>

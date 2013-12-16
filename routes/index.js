@@ -9,9 +9,17 @@ var url = require('url'),
 //GA Login middleware
 var gaMiddleware = exports.gaMiddleware = function(req, res, next) {
 
-  if (/authorize/.test(req.params[0])){
+  //setup check. If the user does not have all ga data,
+  //reroute them to setup
+
+  if (/authorize|setup|javscripts|stylesheets|vendor/.test(req.params[0])){
     return next();
   }
+
+  if (!isSetup()) {
+    return res.redirect('/setup?redirect=true');
+  }
+
   gaManagement.getLocalGAAccount(function(localAccount){
     gaManagement.getAccounts(function(err, accounts){
       if (err) {
@@ -36,6 +44,19 @@ var gaMiddleware = exports.gaMiddleware = function(req, res, next) {
       
     });
   });
+
+  
+};
+
+var isSetup = function() {
+  var obj = require('../private');
+  var keys = Object.keys(obj)
+  for (var m in obj) {
+    if (obj[m].hasOwnProperty && obj[m] ==='' || keys.length < 8) {
+      return false;
+    }
+  }
+  return true;
 };
 
 /*
@@ -60,6 +81,46 @@ var index = exports.index = function(req, res, next){
       });
     });
 };
+
+exports.setup = function(req, res) {
+  var obj = require('../private'),
+      e = '';
+
+  if (req.query && req.query.redirected) {
+    e = 'Please enter all information before proceeding'
+  }
+  res.render('setup',{page:'setup', setup:obj, status:'', error: e}); 
+};
+
+exports.setup_post = function(req, res) {
+  var body = req.body;
+  var obj = require('../private'),
+      e = '';
+  for (var field in body) {
+    var f = body[field];
+    if (f === '') {
+      e = 'Please enter all fields'
+      break;
+    }
+    obj[field] = f;
+  }
+  if (e.length) {
+    return res.render('setup', {page:'setup', setup: obj,error:'Please enter all fields', status: ''})
+  } 
+
+  
+  if (body.user_name === 'admin' && body.password === 'admin') {
+    return res.render('setup', {page:'setup', setup: obj,error:'Please change your username/password', status: ''})
+  }
+
+  var str = 'module.exports = ' + JSON.stringify(obj, null, ' ');
+  fs.writeFile(__dirname + '/../private.js', str, function(){
+    var htpasswd = obj.user_name + ':' + obj.password;
+    fs.writeFile(__dirname + '/../users.htpasswd', htpasswd, function(){
+      res.render('setup', {page:'setup', setup: obj, status: 'updated'});
+    });
+  });
+}
 
 //update to the GA account the user wants
 exports.accounts = function(req, res) {
@@ -157,4 +218,19 @@ exports.revoke = function(req, res) {
     });
   });
 };
+
+exports.debug_visits = function(req, res) {
+  fs.readFile(__dirname + '/../utils/visits.json', function(err, body){
+    var visits = JSON.parse(body);
+    res.json(visits);
+  });
+};
+
+exports.debug_ga = function(req, res) {
+  fs.readFile(__dirname + '/../utils/ga.json', function(err, body){
+    var ga = JSON.parse(body);
+    res.json(ga);
+  });
+};
+
 

@@ -47,6 +47,9 @@ app.all( '*' , routes.gaMiddleware );
 
 app.get('/', routes.index);
 app.get('/accounts', routes.accounts);
+app.get('/setup', routes.setup);
+app.post('/setup', routes.setup_post);
+
 app.post('/accounts', routes.accounts_update);
 app.get('/authorize', routes.authorize);
 app.get('/authorize_redirect', routes.authorize_redirect);
@@ -54,6 +57,9 @@ app.get('/revoke', routes.revoke);
 app.get('/get_visits', routes.get_visits);
 app.get('/list_properties/:id', routes.list_properties);
 app.post('/toggle_status', routes.toggle_status);
+
+app.get('/debug_visits',routes.debug_visits);
+app.get('/debug_ga',routes.debug_ga);
 
 
 http.createServer(app).listen(app.get('port'), function(){

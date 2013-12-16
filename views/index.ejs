@@ -19,6 +19,9 @@
     
     <div class="container">
       <%- include partials/header.ejs %>
+      <div class="jumbotron">
+        <img src="/images/box.jpg" />
+      </div>
       <div class="row">
 
         <div class="col-xs-8">
@@ -26,7 +29,9 @@
           from <span class="text-primary"><%= localAccount.profile.name %></span>. You may change the account
           on the <a href="/accounts">Accounts</a> page.</p>
           <p>The speedometers minimum range is always zero and its maximum range is based on the history
-            for the account you have configured - the Previous Period. This app stores realtime history 
+            for the account you have configured (the Previous Period) times 2. Meaning if the speedometer
+            was maxed out at 180 degrees, you would be seeing double your Previous Periods traffic.
+             This app stores realtime history 
             locally and uses it to create the maximum for the speedometer. If this is the first time running
             this app, it means there is probably no history and the previous period is set to 1.</p>
 

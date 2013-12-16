@@ -136,21 +136,18 @@ module.exports.toggleStatus = function() {
         if ( typeof averageVisitors === 'undefined' ) {
           averageVisitors = 1;
         }
-
+        debugger;
         //Dont want to make the max just what it was last period
         //so give it 100% increase because the idea
         //is you want maximum of 180 degrees to indicate 
         //greater than last time. So 50% would be same as last time
         var _averageVisitors = Math.ceil(averageVisitors*2);
-        
-        console.log(activeVisitors, 'active')
-        console.log(averageVisitors, 'average')
         var degrees = parseInt(utils.convertToRange(activeVisitors,[0,_averageVisitors],[180,0]),10);
         
         if (isNaN(degrees)) {
           degrees = 0;
         }
-        spark.pushToSpark(degrees);
+        spark.pushToSpark(degrees,activeVisitors,_averageVisitors);
       });
     },  15 * 1000 ); //15 seconds
 
