@@ -24,7 +24,7 @@ var request      = require('request'),
 // https://code.google.com/apis/console
 var CLIENT_ID =  priv.client_id;
 var CLIENT_SECRET = priv.client_secret;
-var REDIRECT_URL = 'http://localhost:3000/authorize_redirect';
+var REDIRECT_URL = priv.redirect_url;
 
 var oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 
