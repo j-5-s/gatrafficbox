@@ -1,6 +1,6 @@
 # GA Trafficbox
 
-![box](http://gatrafficbox.aws.af.cm/images/box.jpg)
+![box](https://raw.github.com/jamescharlesworth/gatrafficbox/master/public/images/box.jpg)
 
 This was a quick project I put together for RobotConf 2013 using a Spark Core device. It uses the Real Time
 Google Analytics API to send data to your Spark device which will then turn a Servo from 0 to 180 degrees 
