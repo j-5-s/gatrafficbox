@@ -8,7 +8,7 @@ var log = function() {
     return ;
   }
   var args = [].slice.apply(arguments);
-  fs.appendFile(__dirname + '/../utils/spark.log', '\n\n' + new Date().toISOString() +':\n' + args.join('\n'));
+  fs.appendFile(__dirname + '/../application/spark.log', '\n\n' + new Date().toISOString() +':\n' + args.join('\n'));
 }
 var lastSend;
 

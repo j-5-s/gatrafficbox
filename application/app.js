@@ -1,14 +1,14 @@
 var request     = require('request'),
     fs          = require('fs'),
-    utils       = require('../utils'),
-    google      = require('../utils/google'),
-    spark       = require('../utils/spark'),
+    heplers       = require('../application/helpers'),
+    google      = require('../application/google'),
+    spark       = require('../application/spark'),
     priv        = require('../private');
 
 
 
 // Tries to figure out the average visits over an hour period
-// Order of attempt (uses utils/visits.json:
+// Order of attempt (uses application/visits.json:
 // - Same hour 1 week ago
 // - Same hour yesterday
 // - Previous hour today
@@ -142,7 +142,7 @@ module.exports.toggleStatus = function() {
         //is you want maximum of 180 degrees to indicate 
         //greater than last time. So 50% would be same as last time
         var _averageVisitors = Math.ceil(averageVisitors*2);
-        var degrees = parseInt(utils.convertToRange(activeVisitors,[0,_averageVisitors],[180,0]),10);
+        var degrees = parseInt(helpers.convertToRange(activeVisitors,[0,_averageVisitors],[180,0]),10);
         
         if (isNaN(degrees)) {
           degrees = 0;

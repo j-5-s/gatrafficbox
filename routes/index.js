@@ -1,9 +1,9 @@
 var url = require('url'),
-    utils = require('../utils'),
-    google  = require('../utils/google'),
+    helpers = require('../application/helpers'),
+    google  = require('../application/google'),
     request = require('request'),
-    gaManagement = require('../utils/ga-management'),
-    app = require('../utils/app'),
+    gaManagement = require('../application/ga-management'),
+    app = require('../application/app'),
     fs  = require('fs');
 
 //GA Login middleware
@@ -153,7 +153,7 @@ exports.accounts_update = function( req, res ) {
         }
       };
 
-      fs.writeFile(__dirname +'/../utils/ga.json', JSON.stringify(data, null, " "), function(){
+      fs.writeFile(__dirname +'/../application/ga.json', JSON.stringify(data, null, " "), function(){
         res.redirect('/accounts');
       });
 
@@ -187,7 +187,7 @@ exports.authorize = function(req, res) {
 exports.authorize_redirect = function(req, res){
   var code = req.query.code;
   google.getAccessToken(code, function(tokens){
-    fs.writeFile( __dirname + '/../utils/token.json',JSON.stringify(tokens), function(err){
+    fs.writeFile( __dirname + '/../application/token.json',JSON.stringify(tokens), function(err){
       if (err) {
         throw err;
       }
@@ -220,14 +220,14 @@ exports.revoke = function(req, res) {
 };
 
 exports.debug_visits = function(req, res) {
-  fs.readFile(__dirname + '/../utils/visits.json', function(err, body){
+  fs.readFile(__dirname + '/../application/visits.json', function(err, body){
     var visits = JSON.parse(body);
     res.json(visits);
   });
 };
 
 exports.debug_ga = function(req, res) {
-  fs.readFile(__dirname + '/../utils/ga.json', function(err, body){
+  fs.readFile(__dirname + '/../application/ga.json', function(err, body){
     var ga = JSON.parse(body);
     res.json(ga);
   });
