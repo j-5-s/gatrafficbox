@@ -31,7 +31,9 @@ All you need to do is get the Servo turning and you can do whatever you want as 
 
 ### Install locally
 ```text
-npm install gatrafficbox
+git clone https://github.com/jamescharlesworth/gatrafficbox
+cd gatrafficbox
+node app
 ```
 
 ### Push to PAAS Cloud

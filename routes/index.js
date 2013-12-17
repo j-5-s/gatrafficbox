@@ -233,4 +233,10 @@ exports.debug_ga = function(req, res) {
   });
 };
 
+exports.debug_spark = function(req, res) {
+  fs.readFile(__dirname + '/../application/spark.log', function(err, body){
+    
+    res.send(body)
+  });
+};
 

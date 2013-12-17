@@ -1,6 +1,6 @@
 var request     = require('request'),
     fs          = require('fs'),
-    heplers       = require('../application/helpers'),
+    helpers     = require('../application/helpers'),
     google      = require('../application/google'),
     spark       = require('../application/spark'),
     priv        = require('../private');
@@ -103,7 +103,8 @@ var updateVisits = module.exports.updateVisits = function( i, visit, cb ) {
 // it with a refresh token.
 var getVisits = function(i, regenerate, cb) {
   google.getRealtimeVisits(function(response){
-    var av = parseInt(response.totalsForAllResults['ga:activeVisitors'],10);
+    console.log(response)
+    var av = parseInt(response.totalResults,10);
     updateVisits(i, av, function(){
       cb(av);
     });
@@ -136,7 +137,6 @@ module.exports.toggleStatus = function() {
         if ( typeof averageVisitors === 'undefined' ) {
           averageVisitors = 1;
         }
-        debugger;
         //Dont want to make the max just what it was last period
         //so give it 100% increase because the idea
         //is you want maximum of 180 degrees to indicate 
@@ -149,7 +149,7 @@ module.exports.toggleStatus = function() {
         }
         spark.pushToSpark(degrees,activeVisitors,_averageVisitors);
       });
-    },  15 * 1000 ); //15 seconds
+    },  5 * 1000 ); //15 seconds
 
     historyInterval = setInterval(function(){
       getAverageHistory(function(visitors){

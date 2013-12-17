@@ -58,6 +58,7 @@ app.post('/toggle_status', routes.toggle_status);
 
 app.get('/debug_visits',routes.debug_visits);
 app.get('/debug_ga',routes.debug_ga);
+app.get('/debug_spark',routes.debug_spark);
 
 
 http.createServer(app).listen(app.get('port'), function(){
