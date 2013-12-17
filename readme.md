@@ -11,7 +11,7 @@ free and paid hosting on the App Fog, Heroku, or Joyent.
 
 
 ## Demo
-TODO, add youtube link
+http://youtu.be/bYW59Knelqs
 
 ## Materials Needed
 - [Spark Core Device](http://spark.io/)
@@ -22,7 +22,8 @@ TODO, add youtube link
 
 ## Building the Box
 
-Its up to you to create a cooler box than the laser engraved one I got made at RobotsConf by .
+Its up to you to create a cooler box than the laser engraved one I got made at RobotsConf by some awesome laser
+cutting tool.
 All you need to do is get the Servo turning and you can do whatever you want as far as design goes.
 
 
